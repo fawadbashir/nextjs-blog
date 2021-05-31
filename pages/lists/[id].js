@@ -22,7 +22,6 @@ import Image from 'next/image'
 // }
 
 export async function getServerSideProps({ params }) {
-  console.log(params)
   const response = await fetch(
     `https://uat.chhatt.com/api/properties/${params.id}`
   )
@@ -40,6 +39,10 @@ export async function getServerSideProps({ params }) {
 const List = ({ data }) => {
   // console.log(props.data)
 
+  const myLoader = () => {
+    return `https://icons8.com/preloaders/img/favicons/favicon-194x194.png`
+  }
+
   return (
     <div>
       {data.images.map((prev, i) => {
@@ -50,6 +53,7 @@ const List = ({ data }) => {
               width={150}
               height={150}
               alt='Picture of the author'
+              loader={myLoader}
             />
           </div>
         )
