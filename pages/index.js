@@ -1,55 +1,28 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import Layout, { siteTitle } from '../components/layout'
-import Date from '../components/date'
-import path from 'path'
-import utilStyles from '../styles/utils.module.css'
+// export async function getServerSideProps() {
+//   // const response = await fetch('https://randomuser.me/api/?results=1')
+//   // const resData = await response.json()
 
-import { getSortedPostsData } from '../lib/posts'
+//   console.log(resData.results)
+//   return {
+//     props: {
+//       results: resData.results,
+//     }, // will be passed to the page component as props
+//   }
+// }
 
-export const getStaticProps = async () => {
-  const allPostsData = getSortedPostsData()
-  return {
-    props: {
-      allPostsData,
-    },
-  }
-}
-
-export default function Home({ allPostsData }) {
+const Home = (props) => {
   return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <section className={utilStyles.headingMd}>
-        <p>
-          Hi, My name is Fawad Bashir, I am React.js Developer currently
-          learning Next.js
-        </p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href='https://nextjs.org/learn'>our Next.js tutorial</a>.)
-        </p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              {id}
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </Layout>
+    <div>
+      {/* {props.results.map((result) => (
+        <>
+          <p>{result.gender}</p>
+          <span>
+            {result.name.first} {result.name.last}
+          </span>
+        </>
+      ))} */}
+    </div>
   )
 }
+
+export default Home
