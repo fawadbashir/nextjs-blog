@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 // export const getStaticPaths = async (context) => {
 //   const page = context.page
@@ -32,16 +33,23 @@ export async function getServerSideProps({ params }) {
   return {
     props: {
       data,
-    }, // will be passed to the page component as props
+    },
+
+    // will be passed to the page component as props
   }
 }
 
 const List = ({ data }) => {
+  const { isFallback } = useRouter()
+
+  if (isFallback) {
+    return <></>
+  }
   // console.log(props.data)
 
-  const myLoader = () => {
-    return `https://icons8.com/preloaders/img/favicons/favicon-194x194.png`
-  }
+  // const myLoader = () => {
+  //   return `https://icons8.com/preloaders/img/favicons/favicon-194x194.png`
+  // }
 
   return (
     <div>
@@ -53,7 +61,7 @@ const List = ({ data }) => {
               width={150}
               height={150}
               alt='Picture of the author'
-              loader={myLoader}
+              // loader={myLoader}
             />
           </div>
         )
